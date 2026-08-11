@@ -1,0 +1,30 @@
+{
+  "name": "venatio",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@venatio/web",
+    "dev:mobile": "turbo run dev --filter=@venatio/mobile",
+    "dev:api": "turbo run dev --filter=@venatio/api",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "clean": "turbo run clean && rimraf node_modules",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres meilisearch",
+    "db:migrate": "pnpm --filter @venatio/api prisma:migrate",
+    "db:generate": "pnpm --filter @venatio/api prisma:generate",
+    "db:studio": "pnpm --filter @venatio/api prisma:studio"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

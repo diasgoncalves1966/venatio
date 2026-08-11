@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.5
+    container_name: venatio-postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: venatio
+      POSTGRES_PASSWORD: venatio
+      POSTGRES_DB: venatio
+    volumes:
+      - venatio_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U venatio -d venatio']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    container_name: venatio-meilisearch
+    restart: unless-stopped
+    ports:
+      - '7700:7700'
+    environment:
+      MEILI_ENV: development
+      MEILI_MASTER_KEY: venatio_dev_master_key_change_me
+      MEILI_NO_ANALYTICS: 'true'
+    volumes:
+      - venatio_meili_data:/meili_data
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:7700/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  venatio_postgres_data:
+  venatio_meili_data:

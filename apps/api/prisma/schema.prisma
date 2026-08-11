@@ -1,0 +1,91 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis]
+}
+
+enum ListingCondition {
+  NEW
+  LIKE_NEW
+  GOOD
+  FAIR
+  FOR_PARTS
+}
+
+enum ListingCategory {
+  HUNTING
+  FISHING
+  ACCESSORIES
+  CLOTHING
+  OTHER
+}
+
+enum ListingStatus {
+  DRAFT
+  ACTIVE
+  RESERVED
+  SOLD
+  ARCHIVED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  displayName  String
+  avatarUrl    String?
+  bio          String?
+  city         String?
+  country      String?   @default("PT")
+  /// WGS84 latitude (PostGIS geometry can replace this later)
+  latitude     Float?
+  /// WGS84 longitude
+  longitude    Float?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  listings     Listing[]
+
+  @@index([city])
+  @@map("users")
+}
+
+model Listing {
+  id          String           @id @default(cuid())
+  title       String
+  description String
+  priceCents  Int
+  currency    String           @default("EUR")
+  condition   ListingCondition
+  category    ListingCategory
+  status      ListingStatus    @default(DRAFT)
+  city        String?
+  latitude    Float?
+  longitude   Float?
+  sellerId    String
+  seller      User             @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  images      ListingImage[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([status, category])
+  @@index([sellerId])
+  @@index([priceCents])
+  @@map("listings")
+}
+
+model ListingImage {
+  id        String   @id @default(cuid())
+  url       String
+  sortOrder Int      @default(0)
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([listingId])
+  @@map("listing_images")
+}

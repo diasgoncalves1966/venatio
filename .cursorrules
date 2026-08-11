@@ -1,0 +1,17 @@
+# Contexto do Projeto: Venatio
+
+## Visão Geral
+* **Nome do Projeto:** Venatio (Marketplace C2C de equipamento de caça e pesca em segunda mão, estilo Vinted).
+* **Estrutura:** Monorepo (Turborepo).
+
+## Stack Tecnológica
+* **Mobile (iOS/Android):** React Native com Expo.
+* **Desktop / Web:** Next.js (App Router, Tailwind CSS).
+* **Backend:** Node.js (NestJS) com PostgreSQL (PostGIS) e Prisma ORM.
+* **Pesquisa & Filtros:** Meilisearch.
+* **Pagamentos & Logística:** Stripe Connect (sistema de Escrow) e APIs de transportadoras.
+
+## Padrões de Código
+* Linguagem: TypeScript em todos os pacotes.
+* Commits: Seguir a convenção Conventional Commits (`feat:`, `fix:`, `refactor:`).
+* IDE & Extensões: Cursor com ESLint, Prettier e Tailwind Intellisense.
