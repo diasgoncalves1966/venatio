@@ -1,9 +1,6 @@
 -- CreateSchema
 CREATE SCHEMA IF NOT EXISTS "public";
 
--- CreateExtension
-CREATE EXTENSION IF NOT EXISTS "postgis";
-
 -- CreateEnum
 CREATE TYPE "ListingCondition" AS ENUM ('NEW', 'LIKE_NEW', 'GOOD', 'FAIR', 'FOR_PARTS');
 

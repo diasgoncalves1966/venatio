@@ -45,3 +45,8 @@ web-build
 .cache
 tmp
 temp
+
+# Local uploads
+apps/api/uploads/*
+!apps/api/uploads/.gitkeep
+.vercel

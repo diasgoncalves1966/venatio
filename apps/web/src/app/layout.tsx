@@ -1,29 +1,37 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Fraunces, Source_Sans_3 } from 'next/font/google';
+import { AuthProvider } from '@/components/auth-provider';
+import { SiteHeader } from '@/components/site-header';
+import './globals.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const display = Fraunces({
+  variable: '--font-display',
+  subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const sans = Source_Sans_3({
+  variable: '--font-sans',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
   title: 'Venatio',
-  description: 'Marketplace C2C de equipamento de caça e pesca em segunda mão',
+  description: 'Marketplace C2C de equipamento de caça em segunda mão',
+  icons: {
+    icon: [{ url: '/venatio_icon.jpg', type: 'image/jpeg' }],
+    apple: [{ url: '/venatio_icon.jpg', type: 'image/jpeg' }],
+  },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html
-      lang="pt"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="pt" className={`${display.variable} ${sans.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-[#f7f4ef] font-sans text-stone-900">
+        <AuthProvider>
+          <SiteHeader />
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

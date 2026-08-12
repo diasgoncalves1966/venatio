@@ -1,0 +1,9 @@
+node_modules
+.git
+apps/web
+apps/mobile
+apps/api/uploads
+**/.env
+**/.env.local
+**/.next
+**/dist

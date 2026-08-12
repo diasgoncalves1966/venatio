@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Venatio</Text>
-      <Text style={styles.subtitle}>Caça e pesca em segunda mão</Text>
+      <Text style={styles.subtitle}>Caça em segunda mão</Text>
       <StatusBar style="auto" />
     </View>
   );

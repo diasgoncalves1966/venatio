@@ -1,7 +1,7 @@
 # Contexto do Projeto: Venatio
 
 ## Visão Geral
-* **Nome do Projeto:** Venatio (Marketplace C2C de equipamento de caça e pesca em segunda mão, estilo Vinted).
+* **Nome do Projeto:** Venatio (Marketplace C2C de equipamento de caça em segunda mão, estilo Vinted).
 * **Estrutura:** Monorepo (Turborepo).
 
 ## Stack Tecnológica
@@ -15,3 +15,22 @@
 * Linguagem: TypeScript em todos os pacotes.
 * Commits: Seguir a convenção Conventional Commits (`feat:`, `fix:`, `refactor:`).
 * IDE & Extensões: Cursor com ESLint, Prettier e Tailwind Intellisense.
+
+## Administração
+Users:
+* Alterar utilizadores
+* Criar utilizadores
+* Apagar utilizadores
+Grupos:
+* Administrador e Geral
+* Alterar
+* Criar
+* Apagar
+Categorias:
+* Alterar Categorias
+* Criar Categorias
+* Apagar Categorias
+
+## Vários
+* Na página de login opção para lembrar login
+* Avatar com primeira letra do primeiro nome e primeira letra do ultimo nome
